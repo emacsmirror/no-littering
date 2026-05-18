@@ -474,7 +474,7 @@ of leaking sensitive data, and if you want to reduce that, then
 you must turn of these features completely."
   (setq auto-save-file-name-transforms
         `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
-           ,(concat (file-name-as-directory temporary-file-directory) "\\2") t)
+           ,(file-name-concat temporary-file-directory "\\2") t)
           ("\\`/tmp\\([^/]*/\\)*\\(.*\\)\\'" "\\2")
           ("\\`/dev/shm\\([^/]*/\\)*\\(.*\\)\\'" "\\2")
           (".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
