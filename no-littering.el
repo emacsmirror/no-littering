@@ -334,6 +334,7 @@ This variable has to be set before `no-littering' is loaded.")
     ;; more information.
     (setq notmuch-init-file                (etc "notmuch-init"))
     (setq nov-save-place-file              (var "nov-save-place.el"))
+    (setq oauth2-auto-plstore              (var "oauth2-auto.plstore"))
     (setq omnisharp-cache-directory        (var "omnisharp/cache"))
     (setq org-caldav-backup-file           (var "org/caldav/backup.org"))
     (setq org-caldav-save-directory        (var "org/caldav/save"))
