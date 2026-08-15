@@ -203,8 +203,18 @@ This variable has to be set before `no-littering' is loaded.")
     (eval-after-load 'newsticker  `(make-directory ,(var "newsticker/") t))
     (eval-after-load 'org         `(make-directory ,(var "org/") t))
     (eval-after-load 'shadowfile  `(make-directory ,(var "shadow/") t))
-    (eval-after-load 'treesit     `(when (treesit-available-p)
-                                     (push ,(var "treesit/") treesit-extra-load-path)))
+    (eval-after-load 'treesit
+      `(when (treesit-available-p)
+         (let ((dir ,(var "treesit/")))
+           (push dir treesit-extra-load-path)
+           ;; Ensure the above is respected when downloading new grammars.
+           ;; The directory must exist.  Keep a value of `always' -- only
+           ;; `ask' always installs in "user-emacs-directory/tree-sitter".
+           ;; See https://debbugs.gnu.org/cgi/bugreport.cgi?bug=79862.
+           (when (and (not (version< emacs-version "30.0.90"))
+                      (eq treesit-auto-install-grammar 'ask))
+             (make-directory dir t)
+             (setq treesit-auto-install-grammar 'ask-dir)))))
 
 ;;; Third-party packages
 
