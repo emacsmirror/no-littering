@@ -211,7 +211,7 @@ This variable has to be set before `no-littering' is loaded.")
            ;; The directory must exist.  Keep a value of `always' -- only
            ;; `ask' always installs in "user-emacs-directory/tree-sitter".
            ;; See https://debbugs.gnu.org/cgi/bugreport.cgi?bug=79862.
-           (when (and (not (version< emacs-version "30.0.90"))
+           (when (and (boundp 'treesit-auto-install-grammar)
                       (eq treesit-auto-install-grammar 'ask))
              (make-directory dir t)
              (setq treesit-auto-install-grammar 'ask-dir)))))
